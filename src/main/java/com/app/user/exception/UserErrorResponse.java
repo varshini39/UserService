@@ -1,14 +1,14 @@
 package com.app.user.exception;
 
-public class BookingErrorResponse {
+public class UserErrorResponse {
 	
 	private int status;
 	private String message;
 	private long timeStamp;
 	
-	public BookingErrorResponse() { }
+	public UserErrorResponse() { }
 	
-	public BookingErrorResponse(int status, String message, long timeStamp) {
+	public UserErrorResponse(int status, String message, long timeStamp) {
 		this.status = status;
 		this.message = message;
 		this.timeStamp = timeStamp;
