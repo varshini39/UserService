@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+
+  mysqldb-docker:
+    image: mysql:8.0
+    container_name: mysqldb
+    networks:
+      - app-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=flight_booking
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+
+  user-service:
+    image: user-service
+    build:
+      context: .
+    container_name: user-service
+    ports:
+      - "8081:8080"
+    networks:
+      - app-mysql
+    depends_on:
+      - mysqldb-docker
+
+
+# Volumes
+volumes:
+  mysqldb-docker:
+
+networks:
+  app-mysql:
+
+# Steps without docker compose - for mysql container
+# docker pull mysql:8.0
+# docker network create app-mysql
+# docker network ls
+# SKIP ---> docker run --name mysqldb --network app-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=employeedb -d mysql
+# docker container run --name=mysqldb -p 3307:3306 --network app-mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0
+# docker exec -it mysqldb bash
+# bash-4.4# mysql -u root -p
+# Create user and add database
+# CREATE USER 'admin'@'%' IDENTIFIED BY 'admin123';
+# SELECT Host,User FROM mysql.user;
+# GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;
+# CREATE DATABASE IF NOT EXISTS flight_booking;
+
+# Steps without docker compose - for user-service container
+# mvn clean package
+# docker build -t user-service .
+# docker images
+# docker container run --network app-mysql --name user-service -p 7070:8080 -d user-service
+# ABOVE: Remove '-d' to check for starter logs
+# To run docker compose: docker-compose up --build
+
+# docker system prune - to clear docker
