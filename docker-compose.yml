@@ -53,7 +53,7 @@ networks:
 # mvn clean package
 # docker build -t user-service .
 # docker images
-# docker container run --network app-mysql --name user-service -p 7070:8080 -d user-service
+# docker container run --network app-mysql --name user-service -p 8081:8080 -d user-service
 # ABOVE: Remove '-d' to check for starter logs
 # To run docker compose: docker-compose up --build
 
