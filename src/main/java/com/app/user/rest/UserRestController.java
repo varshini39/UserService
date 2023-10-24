@@ -1,6 +1,6 @@
 package com.app.user.rest;
 
-import com.app.user.entity.User;
+import com.app.project.entity.User;
 import com.app.user.exception.IdNotFoundException;
 import com.app.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

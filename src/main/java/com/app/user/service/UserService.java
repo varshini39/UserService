@@ -1,6 +1,7 @@
 package com.app.user.service;
 
-import com.app.user.entity.User;
+
+import com.app.project.entity.User;
 
 import java.util.List;
 

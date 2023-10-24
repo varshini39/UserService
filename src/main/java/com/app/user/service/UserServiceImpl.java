@@ -1,6 +1,6 @@
 package com.app.user.service;
 
-import com.app.user.entity.User;
+import com.app.project.entity.User;
 import com.app.user.exception.IdNotFoundException;
 import com.app.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public List<User> findAll() {
+	public List<com.app.project.entity.User> findAll() {
 		return userRepository.findAll();
 	}
 	
