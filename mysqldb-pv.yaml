@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysqldb-pv
+spec:
+  capacity:
+    storage: 5Gi  # Set the desired storage size
+  accessModes:
+    - ReadWriteOnce  # Adjust based on your use case
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard  # Set the appropriate storage class
+  hostPath:
+    path: /path/to/host/mysqldb-data  # Adjust the host path to your desired location

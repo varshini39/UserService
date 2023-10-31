@@ -1,0 +1,33 @@
+# mysqldb-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysqldb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysqldb
+  template:
+    metadata:
+      labels:
+        app: mysqldb
+    spec:
+      containers:
+        - name: mysqldb
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+              name: mysqldb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_DATABASE
+              value: flight_booking
+          volumeMounts:
+            - name: mysqldb-persistent-storage  # Reference the PVC name
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysqldb-persistent-storage  # Define the volume name
+          persistentVolumeClaim:
+            claimName: mysqldb-pvc  # Reference the PVC name you created earlier
