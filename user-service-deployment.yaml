@@ -24,9 +24,9 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               value: root
             - name: SPRING_DATASOURCE_DB_HOST
-              value: mysqldb-service
+              value: mysqldb
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://mysqldb-service:3306/flight_booking?createDatabaseIfNotExist=true
+              value: jdbc:mysql://mysqldb:3306/flight_booking?createDatabaseIfNotExist=true
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD

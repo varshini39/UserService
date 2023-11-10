@@ -1,0 +1,73 @@
+docker system prune
+docker system prune --volumes
+docker network create app-mysql
+docker context use default
+
+docker image ls
+docker login -u sweetyrv
+docker tag user-service:1.0 sweetyrv/flight_booking:user-service
+docker push sweetyrv/flight_booking:user-service
+docker tag flight-service:1.0 sweetyrv/flight_booking:flight-service
+docker push sweetyrv/flight_booking:flight-service
+docker tag booking-service:1.0 sweetyrv/flight_booking:booking-service
+docker push sweetyrv/flight_booking:booking-service
+
+docker pull sweetyrv/flight_booking:user-service
+
+minikube start
+minikube status
+minikube stop
+minikube -p minikube docker-env
+& minikube -p minikube docker-env --shell powershell | Invoke-Expression
+[above command for eval $(minikube docker-env)]
+
+kubectl apply -f mysqldb-pv.yaml
+kubectl apply -f mysqldb-pvc.yaml
+kubectl apply -f mysqldb-deployment.yaml
+kubectl apply -f mysqldb-service.yaml
+minikube service mysqldb-service
+
+kubectl apply -f user-service-deployment.yaml
+kubectl apply -f user-service-service.yaml
+minikube service user-service
+
+kubectl apply -f flight-service-deployment.yaml
+kubectl apply -f flight-service-service.yaml
+minikube service flight-service
+
+kubectl apply -f booking-service-deployment.yaml
+kubectl apply -f booking-service-service.yaml
+minikube service booking-service
+
+kubectl get pods
+kubectl describe pods
+kubectl describe pod user-service-deployment-8446df5555-c4wf6
+kubectl get nodes
+kubectl get svc
+kubectl get nodes -o wide
+kubectl get services
+kubectl get endpoints
+
+# Main command to start all services and list the services
+minikube service --all
+or
+minikube service serviceName --url
+
+minikube logs --file=logs.txt
+
+docker build -t user-service .
+minikube image load user-service:latest
+docker build .
+docker ps
+
+kubectl port-forward mysqldb-deployment-6dd8b8df-l9hdc 3306 3307
+kubectl port-forward user-service-deployment-8446df5555-c4wf6 :8081
+kubectl exec --stdin --tty mysqldb-deployment-568747bc9b-z5shd -- /bin/bash
+kubectl logs -f user-service-deployment-8446df5555-c4wf6 > logs-user.txt
+kubectl exec -it user-service-deployment-85bc66689b-cmpxs -- nslookup mysql-service
+kubectl describe service user-service
+
+
+
+
+

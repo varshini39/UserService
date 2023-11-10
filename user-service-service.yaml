@@ -6,8 +6,8 @@ spec:
   selector:
     app: user-service
   ports:
-    - protocol: TCP
-      port: 8081
-      targetPort: 8081
-      #nodePort: 31000
-  # type: NodePort  # Use NodePort to make it accessible externally
+    - name: http
+      protocol: TCP
+      port: 8081   # This is the port you want to expose externally via NodePort
+      targetPort: 8080  # This should be the port your application listens on within the pod
+  type: NodePort # Use NodePort to make it accessible externally

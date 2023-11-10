@@ -7,5 +7,7 @@ WORKDIR /app/user-service
 # Copy the JAR file into the container
 COPY target/user-service-1.jar user-service.jar
 
+EXPOSE 8081
+
 # Command to run your application
 ENTRYPOINT ["java", "-jar", "user-service.jar"]

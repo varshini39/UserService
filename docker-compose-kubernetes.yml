@@ -29,8 +29,8 @@ services:
     depends_on:
       - mysqldb-docker
     environment:
-      - SPRING_DATASOURCE_DB_HOST=mysqldb-service
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb-service:3306/flight_booking?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_DB_HOST=mysqldb
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/flight_booking?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
 
